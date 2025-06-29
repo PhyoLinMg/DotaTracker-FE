@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+
 import {
   Dialog,
   DialogContent,
@@ -13,19 +14,31 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
+import { processMatch } from "@/services/dota_service"
 import { Label } from "@/components/ui/label"
+import { toast } from "@/hooks/use-toast"
 
 export function HeroSection() {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [matchId, setMatchId] = useState("")
 
-  const handleSubmitMatch = () => {
-    if (matchId.trim()) {
-      // Here you would typically send the match ID to your backend
-      console.log("Submitted match ID:", matchId)
-      alert(`Match ID ${matchId} submitted successfully!`)
-      setMatchId("")
-      setIsDialogOpen(false)
+  const handleSubmitMatch = async () => {
+    if (!matchId.trim()) return;
+    try {
+      const data = await processMatch(matchId);
+      toast({
+        title: "Match submitted!",
+        description: `Match ID ${matchId} submitted successfully! Status: ${data.status}`,
+        variant: "default", // green background
+      });
+      setMatchId("");
+      setIsDialogOpen(false);
+    } catch (error: any) {
+      toast({
+        title: "Submission failed",
+        description: error?.message || "Failed to submit match.",
+        variant: "destructive", // red background
+      });
     }
   }
 

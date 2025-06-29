@@ -13,8 +13,6 @@ class AxiosClient {
         'Content-Type': 'application/json',
       },
     });
-
-    this.setupInterceptors();
   }
 
   public static getInstance(): AxiosClient {
@@ -24,34 +22,6 @@ class AxiosClient {
     return AxiosClient.instance;
   }
 
-
-
-  private setupInterceptors(): void {
-    // Request interceptor
-    this.axiosInstance.interceptors.request.use(
-      (config) => {
-        const token = localStorage.getItem('accessToken');
-        console.log("token is ", token);
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      }
-    );
-
-    // Response interceptor
-    this.axiosInstance.interceptors.response.use(
-      (response) => {
-        return response;
-      },
-      async (error: AxiosError) => {
-        return Promise.reject(error);
-      }
-    );
-  }
 
   public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
     try {
