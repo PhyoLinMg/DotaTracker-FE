@@ -17,44 +17,46 @@ export function Navbar() {
           <span className="text-xl font-extrabold text-white">Pudge Hook Tracker</span>
         </div>
 
-        {isMobile ? (
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="ml-auto text-white hover:bg-gray-800 hover:text-white">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-gray-900 border-gray-700">
-              <nav className="flex flex-col gap-4 mt-8">
-                <Link href="#about" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">
-                  About
-                </Link>
-                <Link
-                  href="#leaderboard"
-                  className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
-                >
-                  Leaderboard
-                </Link>
-                <Link href="#rules" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">
-                  Rules
-                </Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        ) : (
-          <nav className="ml-auto flex gap-6">
-            <Link href="#about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-              About
-            </Link>
-            <Link href="#leaderboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-              Leaderboard
-            </Link>
-            <Link href="#rules" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-              Rules
-            </Link>
-          </nav>
-        )}
+        <div className="ml-auto flex items-center gap-4">
+          {isMobile ? (
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon" className="ml-auto bg-white/10 text-white hover:bg-gray-800 hover:text-white border-gray-700">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-gray-900 border-gray-700">
+                <nav className="flex flex-col gap-4 mt-8">
+                  <Link href="#about" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">
+                    About
+                  </Link>
+                  <Link
+                    href="#leaderboard"
+                    className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
+                  >
+                    Leaderboard
+                  </Link>
+                  <Link href="#rules" className="text-lg font-medium text-gray-300 hover:text-white transition-colors">
+                    Rules
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          ) : (
+            <nav className="flex gap-6">
+              <Link href="#about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                About
+              </Link>
+              <Link href="#leaderboard" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                Leaderboard
+              </Link>
+              <Link href="#rules" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                Rules
+              </Link>
+            </nav>
+          )}
+        </div>
       </div>
     </header>
   )

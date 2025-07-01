@@ -50,7 +50,7 @@ export function HeroSection() {
   }
 
   return (
-    <section id="about" className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
+    <section id="about" className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden pt-20 md:pt-0">
       {/* Geometric Grid Background */}
       <div className="absolute inset-0 opacity-20">
         <div
